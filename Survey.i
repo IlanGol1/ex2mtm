@@ -1,6 +1,6 @@
 %module Survey
 %{
-% #include "Survey.h"
+ #include "Survey.h"
 %}
 
 typedef enum { SURVEY_ALLOCATION_FAILED, SURVEY_SUCCESS} SurveyReturnValue;
