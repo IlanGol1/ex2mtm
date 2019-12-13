@@ -59,9 +59,9 @@ def correct_myfile(old_survey_path):
 
 		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
 		else:
-			dict[int(id)] == copy(line)
+			dict[int(id)] = copy(line.replace("\n", "").replace("\r", ""))
 
-	for key, value in dict:
+	for key, value in dict.items():
 		print(value)
 
 #Returns a new Survey item with the data of a new survey file:
