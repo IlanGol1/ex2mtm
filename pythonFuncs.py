@@ -1,6 +1,5 @@
+from copy import copy
 
-
-#
 def is_valid(id, feeding_habits, age, gender, ratings):
 
 	#check id
@@ -11,8 +10,9 @@ def is_valid(id, feeding_habits, age, gender, ratings):
 	except ValueError as e:
 		return False
 
-	#assuming no restrictions on feeding_habits:
-	pass
+	#check feeding habits(assuming no restrictions)
+	#valid_feeding_habits = ["Vegetarian", "Vegan", "Omnivore"]
+	#if feeding_habits not in valid_feeding_habits: return False
 
 	#check age
 	try:
@@ -22,8 +22,8 @@ def is_valid(id, feeding_habits, age, gender, ratings):
 	except ValueError as e:
 		return False
 
-	#assuming no restrictions on gender (newAge bullshit)
-	pass
+	#check gender : [assuming no restrictions on gender (newAge bullshit)]
+	#if gender not in ["Woman", "Man"]: return False
 
 	#check ratings
 	try:
@@ -44,7 +44,7 @@ def correct_myfile(old_survey_path):
 	if f is None: return
 
 	survey = f.readlines()
-	close(f)
+	f.close()
 
 	dict = {}
 	for line in survey:
@@ -57,12 +57,13 @@ def correct_myfile(old_survey_path):
 		gender = organized[3]
 		ratings = organized[4:]
 
-		if(! is_valid(id, feeding_habits, age, gender, ratings)): continue
+		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
 		else:
 			dict[int(id)] == copy(line)
 
 	for key, value in dict:
 		print(value)
+
 #Returns a new Survey item with the data of a new survey file:
 #survey_path: The path to the survey
 def scan_survey(survey_path):
