@@ -16,3 +16,5 @@ int* SurveyQuerySurvey(Survey survey, int ChocolateType, bool Gender, int AgeMin
 void SurveyQueryDestroy(int* histogram);
 
 void SurveyDestroySurvey(Survey survey);
+
+int* SurveyCreateIntAr(unsigned int size);
