@@ -85,6 +85,8 @@ def scan_survey(survey_path):
 		gender = organized[3]
 		ratings = organized[4:]
 
+		print(ratings)
+
 		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
 		Survey.SurveyAddPerson(survey, int(id), int(age), gender == "Woman", valid_feeding_habits.index(feeding_habits), [int(rating) for rating in ratings])
 
