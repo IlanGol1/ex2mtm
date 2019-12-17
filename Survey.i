@@ -18,3 +18,5 @@ void SurveyQueryDestroy(int* histogram);
 void SurveyDestroySurvey(Survey survey);
 
 int* SurveyCreateIntAr(unsigned int size);
+
+void SurveySetIntArIdxVal (int* ar, unsigned int idx, int val);

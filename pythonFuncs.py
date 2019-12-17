@@ -69,7 +69,8 @@ def correct_myfile(old_survey_path):
 
 def convert_int_arr(py_arr):
 	c_arr = Survey.SurveyCreateIntAr(5)
-	for i in range(5): c_arr[i] = py_arr[i]
+	for i in range(5): Survey.SurveySetIntArIdxVal (c_arr, i, py_arr);
+
 	return c_arr
 
 #Returns a new Survey item with the data of a new survey file:
