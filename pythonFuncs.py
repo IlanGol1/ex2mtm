@@ -64,7 +64,7 @@ def correct_myfile(old_survey_path):
 		else:
 			dict[int(id)] = copy(line.replace("\n", "").replace("\r", ""))
 
-	for key in dict.keys():
+	for key in sorted(dict.keys()):
 		print(dict[key])
 
 #Returns a new Survey item with the data of a new survey file:
