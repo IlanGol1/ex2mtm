@@ -1,5 +1,6 @@
 from copy import copy
 import Survey
+import ctypes
 
 valid_feeding_habits = ["Vegan", "Vegetarian", "Omnivore"]
 genders = ["Woman", "Man"]
@@ -67,6 +68,10 @@ def correct_myfile(old_survey_path):
 	for key in sorted(dict.keys()):
 		print(dict[key])
 
+def convert_int_arr(py_arr):
+	c_arr = (ctypes.c_int * len(py_arr))()
+	for i in range(5): c_arr[i] = py_arr[i]
+
 #Returns a new Survey item with the data of a new survey file:
 #survey_path: The path to the survey
 def scan_survey(survey_path):
@@ -88,7 +93,9 @@ def scan_survey(survey_path):
 		print(ratings)
 
 		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
-		Survey.SurveyAddPerson(survey, int(id), int(age), gender == "Woman", valid_feeding_habits.index(feeding_habits), [int(rating) for rating in ratings])
+
+		Survey.SurveyAddPerson(survey, int(id), int(age), gender == "Woman", valid_feeding_habits.index(feeding_habits)
+			, convert_int_arr([int(rating) for rating in ratings]))
 
 	return survey
 
