@@ -1,4 +1,8 @@
 from copy import copy
+import Survey
+
+valid_feeding_habits = ["Vegan", "Vegetarian", "Omnivore"]
+genders = ["Woman", "Man"]
 
 def is_valid(id, feeding_habits, age, gender, ratings):
 
@@ -11,8 +15,7 @@ def is_valid(id, feeding_habits, age, gender, ratings):
 		return False
 
 	#check feeding habits(assuming no restrictions)
-	#valid_feeding_habits = ["Vegetarian", "Vegan", "Omnivore"]
-	#if feeding_habits not in valid_feeding_habits: return False
+	if feeding_habits not in valid_feeding_habits: return False
 
 	#check age
 	try:
@@ -22,8 +25,8 @@ def is_valid(id, feeding_habits, age, gender, ratings):
 	except ValueError as e:
 		return False
 
-	#check gender : [assuming no restrictions on gender (newAge bullshit)]
-	#if gender not in ["Woman", "Man"]: return False
+	#check gender :
+	if gender not in genders: return False
 
 	#check ratings
 	try:
@@ -67,8 +70,26 @@ def correct_myfile(old_survey_path):
 #Returns a new Survey item with the data of a new survey file:
 #survey_path: The path to the survey
 def scan_survey(survey_path):
-	pass
-    #TODO
+	survey = Survey.SurveyCreateSurvey()
+	file = open(survey_path, 'r')
+	lines = file.readlines()
+	file.close()
+
+	for line in lines:
+		organized = line.split()
+		if len(organized) != 9: continue
+
+		id = organized[0]
+		feeding_habits = organized[1]
+		age = organized[2]
+		gender = organized[3]
+		ratings = organized[4:]
+
+		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
+		Survey.SurveyAddPerson(survey, int(id), int(age), gender == "Woman", valid_feeding_habits.index(feeding_habits), [int(rating) for rating in ratings])
+
+	return survey
+
 
 #Prints a python list containing the number of votes for each rating of a group according to the arguments
 #s: the data of the Survey object
@@ -78,11 +99,13 @@ def scan_survey(survey_path):
 #max_age: the maximum age of the group (a number)
 #eating_habits: the eating habits of the group (string of "Omnivore", "Vegan" or "Vegetarian")
 def print_info(s, choc_type, gender, min_age, max_age, eating_habits):
-	pass
-    #TODO
+	query = Survey.SurveyQuerySurvey(s, choc_type, gender == "Woman", min_age, max_age, valid_feeding_habits.index(eating_habits))
+	print(query)
+	Survey.SurveyQueryDestroy(query)
+	#TODO
 
 #Clears a Survey object data
 #s: the data of the Survey object
 def clear_survey(s):
-	pass
+	Survey.SurveyDestroySurvey(s)
     #TODO
