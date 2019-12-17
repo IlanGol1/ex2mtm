@@ -69,7 +69,7 @@ def correct_myfile(old_survey_path):
 
 def convert_int_arr(py_arr):
 	c_arr = Survey.SurveyCreateIntAr(5)
-	for i in range(5): Survey.SurveySetIntArIdxVal (c_arr, i, py_arr);
+	for i in range(5): Survey.SurveySetIntArIdxVal (c_arr, i, py_arr[i]);
 
 	return c_arr
 
