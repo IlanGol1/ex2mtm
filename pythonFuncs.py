@@ -96,7 +96,7 @@ def scan_survey(survey_path):
 		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
 
 		Survey.SurveyAddPerson(survey, int(id), int(age), gender == "Woman", valid_feeding_habits.index(feeding_habits)
-			, convert_int_arr([int(rating) for rating in ratings]))
+			, ctypes.pointer(convert_int_arr([int(rating) for rating in ratings])))
 
 	return survey
 
