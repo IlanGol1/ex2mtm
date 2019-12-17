@@ -71,6 +71,7 @@ def correct_myfile(old_survey_path):
 def convert_int_arr(py_arr):
 	c_arr = (ctypes.c_int * len(py_arr))()
 	for i in range(5): c_arr[i] = py_arr[i]
+	return c_arr
 
 #Returns a new Survey item with the data of a new survey file:
 #survey_path: The path to the survey
