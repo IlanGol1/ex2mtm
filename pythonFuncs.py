@@ -110,6 +110,8 @@ def scan_survey(survey_path):
 #eating_habits: the eating habits of the group (string of "Omnivore", "Vegan" or "Vegetarian")
 def print_info(s, choc_type, gender, min_age, max_age, eating_habits):
 	query = Survey.SurveyQuerySurvey(s, choc_type, gender == "Woman", min_age, max_age, valid_feeding_habits.index(eating_habits))
+	for i in range(10):
+		Survey.SurveyGetIntArIdxVal(query, i)
 	print(query)
 	Survey.SurveyQueryDestroy(query)
 	#TODO

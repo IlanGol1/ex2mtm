@@ -20,3 +20,5 @@ void SurveyDestroySurvey(Survey survey);
 int* SurveyCreateIntAr(unsigned int size);
 
 void SurveySetIntArIdxVal (int* ar, unsigned int idx, int val);
+
+int SurveyGetIntArIdxVal(int* ar, unsigned int idx);
