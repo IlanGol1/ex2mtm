@@ -91,8 +91,6 @@ def scan_survey(survey_path):
 		gender = organized[3]
 		ratings = organized[4:]
 
-		print(ratings)
-
 		if(not is_valid(id, feeding_habits, age, gender, ratings)): continue
 
 		Survey.SurveyAddPerson(survey, int(id), int(age), gender == "Woman", valid_feeding_habits.index(feeding_habits)
@@ -110,14 +108,15 @@ def scan_survey(survey_path):
 #eating_habits: the eating habits of the group (string of "Omnivore", "Vegan" or "Vegetarian")
 def print_info(s, choc_type, gender, min_age, max_age, eating_habits):
 	query = Survey.SurveyQuerySurvey(s, choc_type, gender == "Woman", min_age, max_age, valid_feeding_habits.index(eating_habits))
+
+	arr = []
 	for i in range(10):
-		Survey.SurveyGetIntArIdxVal(query, i)
-	print(query)
+		arr.append(Survey.SurveyGetIntArIdxVal(query, i))
+
 	Survey.SurveyQueryDestroy(query)
-	#TODO
+	print(arr)
 
 #Clears a Survey object data
 #s: the data of the Survey object
 def clear_survey(s):
 	Survey.SurveyDestroySurvey(s)
-    #TODO
